@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Demo XSS — Bình luận</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 30px;
+        background: #f6f6f6;
+      }
+      .comment-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ddd;
+        width: 400px;
+      }
+      .result {
+        margin-top: 20px;
+        background: #fff;
+        padding: 15px;
+        min-height: 80px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>📝 Gửi bình luận</h2>
+
+    <div class="comment-box">
+      <input
+        id="commentInput"
+        type="text"
+        placeholder="Nhập bình luận…"
+        style="width: 100%; padding: 8px"
+      />
+      <button id="btnSend" style="margin-top: 10px">Gửi</button>
+    </div>
+
+    <h3>Kết quả hiển thị:</h3>
+    <div class="result" id="output"></div>
+
+    <script src="./assets/js/ex_04.js"></script>
+  </body>
+</html>

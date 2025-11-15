@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body
+    class="min-h-screen bg-purple-600 flex items-start justify-center pt-16"
+  >
+    <!-- MAIN  -->
+    <div class="w-[500px] bg-white p-8 rounded-sm shadow-xl">
+      <h1 class="text-3xl font-bold mb-7">Create a new account</h1>
+
+      <!-- FORM  -->
+      <form action="" id="form">
+        <!-- Username  -->
+        <div class="mb-5">
+          <label
+            for="username"
+            class="text-md text-[#333] font-bold mb-1 block"
+          >
+            Username
+          </label>
+          <div class="relative">
+            <input
+              id="username"
+              type="text"
+              class="w-full h-11 px-3 py-2.5 border border-gray-300 rounded-md focus:outline-none"
+            />
+            <span
+              id="icon-username"
+              class="absolute right-3 top-2 text-lg hidden"
+            ></span>
+            <p id="error-username" class="text-xs text-red-500 mt-1 hidden"></p>
+          </div>
+        </div>
+
+        <!-- Email  -->
+        <div class="mb-5">
+          <label for="email" class="text-md text-[#333] font-bold mb-1 block">
+            Email
+          </label>
+          <div class="relative">
+            <input
+              id="email"
+              type="text"
+              class="w-full h-11 px-3 py-2.5 border border-gray-300 rounded-md focus:outline-none"
+            />
+            <span
+              id="icon-email"
+              class="absolute right-3 top-2 text-lg hidden"
+            ></span>
+            <p id="error-email" class="text-xs text-red-500 mt-1 hidden"></p>
+          </div>
+        </div>
+
+        <!-- Password  -->
+        <div class="mb-5">
+          <label
+            for="password"
+            class="text-md text-[#333] font-bold mb-1 block"
+          >
+            Password
+          </label>
+          <div class="relative">
+            <input
+              id="password"
+              type="password"
+              class="w-full h-11 px-3 py-2.5 border border-gray-300 rounded-md focus:outline-none"
+            />
+            <span
+              id="icon-password"
+              class="absolute right-3 top-2 text-lg hidden"
+            ></span>
+            <p id="error-password" class="text-xs text-red-500 mt-1 hidden"></p>
+          </div>
+        </div>
+
+        <!-- Confirm Password  -->
+        <div class="mb-5">
+          <label for="confirm" class="text-md text-[#333] font-bold mb-1 block">
+            Password Confirmation
+          </label>
+          <div class="relative">
+            <input
+              id="confirm"
+              type="password"
+              class="w-full h-11 px-3 py-2.5 border border-gray-300 rounded-md focus:outline-none"
+            />
+            <span
+              id="icon-confirm"
+              class="absolute right-3 top-2 text-lg hidden"
+            ></span>
+            <p id="error-confirm" class="text-xs text-red-500 mt-1 hidden"></p>
+          </div>
+        </div>
+
+        <!-- Submit button  -->
+        <button
+          class="mt-6 w-full h-[46px] cursor-pointer select-none bg-purple-600 hover:bg-purple-700 transition text-white font-semibold rounded-md"
+        >
+          Create account
+        </button>
+      </form>
+    </div>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

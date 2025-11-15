@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  max-width: calc(100% - 48px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  font-family: "Playwrite HU", cursive;
+}
+
+.btn {
+  user-select: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 99px;
+  transition: all 0.5s ease-in-out;
+  border: none;
+  outline: none;
+  font-weight: 600;
+}
+
+.btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.btn:active {
+  transform: scale(0.92);
+  transition: all 0.5s ease-in-out;
+}
+
+input {
+  padding: 8px;
+  background-color: #fff;
+  border: solid 1px #333;
+  border-radius: 10px;
+  width: 200px;
+}
