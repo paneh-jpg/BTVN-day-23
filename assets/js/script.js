@@ -1,36 +1,37 @@
-const form = document.getElementById("form");
+// Get input elements
+const form = document.querySelector("#form");
 
-const username = document.getElementById("username");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const confirmPwd = document.getElementById("confirm");
+const username = document.querySelector("#username");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
+const confirm = document.querySelector("#confirm");
 
-const iconUsername = document.getElementById("icon-username");
-const errorUsername = document.getElementById("error-username");
+// Get icon & error elements
+const iconUsername = document.querySelector("#icon-username");
+const errorUsername = document.querySelector("#error-username");
 
-const iconEmail = document.getElementById("icon-email");
-const errorEmail = document.getElementById("error-email");
+const iconEmail = document.querySelector("#icon-email");
+const errorEmail = document.querySelector("#error-email");
 
-const iconPassword = document.getElementById("icon-password");
-const errorPassword = document.getElementById("error-password");
+const iconPassword = document.querySelector("#icon-password");
+const errorPassword = document.querySelector("#error-password");
 
-const iconConfirm = document.getElementById("icon-confirm");
-const errorConfirm = document.getElementById("error-confirm");
+const iconConfirm = document.querySelector("#icon-confirm");
+const errorConfirm = document.querySelector("#error-confirm");
 
+// Show error
 function showError(input, message, iconEl, errorEl) {
-  input.classList.remove("border-gray-300");
+  input.classList.remove("border-gray-300", "border-emerald-500");
   input.classList.add("border-red-500", "bg-red-50");
 
   iconEl.classList.remove("hidden");
   iconEl.innerHTML = `<i class="fa-solid fa-circle-exclamation text-red-500"></i>`;
 
-  iconEl.classList.remove("animate-icon-shake");
-  void iconEl.offsetWidth;
-  iconEl.classList.add("animate-icon-shake");
   errorEl.textContent = message;
   errorEl.classList.remove("hidden");
 }
 
+// Show success
 function showSuccess(input, iconEl, errorEl) {
   input.classList.remove("border-gray-300", "border-red-500", "bg-red-50");
   input.classList.add("border-emerald-500");
@@ -41,8 +42,10 @@ function showSuccess(input, iconEl, errorEl) {
   errorEl.classList.add("hidden");
 }
 
+// Validate username
 function validateUsername() {
   const value = username.value;
+
   if (value.trim() === "") {
     showError(
       username,
@@ -52,6 +55,7 @@ function validateUsername() {
     );
     return false;
   }
+
   if (/\s/.test(value)) {
     showError(
       username,
@@ -61,6 +65,7 @@ function validateUsername() {
     );
     return false;
   }
+
   if (!/^[A-Za-z0-9._]+$/.test(value)) {
     showError(
       username,
@@ -70,6 +75,7 @@ function validateUsername() {
     );
     return false;
   }
+
   if (/\.\./.test(value)) {
     showError(
       username,
@@ -79,6 +85,7 @@ function validateUsername() {
     );
     return false;
   }
+
   if (/^\./.test(value) || /\.$/.test(value)) {
     showError(
       username,
@@ -88,15 +95,16 @@ function validateUsername() {
     );
     return false;
   }
+
   showSuccess(username, iconUsername, errorUsername);
   return true;
 }
 
+// Validate email
 function validateEmail() {
   const value = email.value.trim();
 
   const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-
   if (!isValid) {
     showError(email, "Please enter a valid email", iconEmail, errorEmail);
     return false;
@@ -106,6 +114,7 @@ function validateEmail() {
   return true;
 }
 
+// Validate password
 function validatePassword() {
   const value = password.value;
 
@@ -118,6 +127,7 @@ function validatePassword() {
     );
     return false;
   }
+
   if (value.length < 8) {
     showError(
       password,
@@ -127,37 +137,16 @@ function validatePassword() {
     );
     return false;
   }
-  if (!/[a-z]/.test(value)) {
+
+  if (
+    !/[a-z]/.test(value) ||
+    !/[A-Z]/.test(value) ||
+    !/[0-9]/.test(value) ||
+    !/[!@#$%^&*(),.?":{}|<>_\-\\\/\[\]=+]/.test(value)
+  ) {
     showError(
       password,
-      "Password must contain at least one lowercase letter",
-      iconPassword,
-      errorPassword
-    );
-    return false;
-  }
-  if (!/[A-Z]/.test(value)) {
-    showError(
-      password,
-      "Password must contain at least one uppercase letter",
-      iconPassword,
-      errorPassword
-    );
-    return false;
-  }
-  if (!/[0-9]/.test(value)) {
-    showError(
-      password,
-      "Password must contain at least one digit",
-      iconPassword,
-      errorPassword
-    );
-    return false;
-  }
-  if (!/[!@#$%^&*(),.?":{}|<>_\-\\\/\[\]=+]/.test(value)) {
-    showError(
-      password,
-      "Password must contain at least one special character",
+      "Password must contain uppercase, lowercase letters, a digit, and a special character",
       iconPassword,
       errorPassword
     );
@@ -165,38 +154,38 @@ function validatePassword() {
   }
 
   showSuccess(password, iconPassword, errorPassword);
-  return true;
 }
 
+// Validate Confirm Password
 function validateConfirm() {
-  if (!validatePassword()) {
-    showError(confirmPwd, "Password is invalid", iconConfirm, errorConfirm);
+  if (!validatePassword) {
+    showError(confirm, "Password is invalid", iconConfirm, errorConfirm);
     return false;
   }
 
-  if (confirmPwd.value !== password.value || confirmPwd.value === "") {
-    showError(confirmPwd, "Passwords do not match", iconConfirm, errorConfirm);
+  if (confirm.value !== password.value || confirm.value === "") {
+    showError(confirm, "Password do not match", iconConfirm, errorConfirm);
     return false;
   }
 
-  showSuccess(confirmPwd, iconConfirm, errorConfirm);
+  showSuccess(confirm, iconConfirm, errorConfirm);
   return true;
 }
 
 username.addEventListener("input", validateUsername);
 email.addEventListener("input", validateEmail);
 password.addEventListener("input", validatePassword);
-confirmPwd.addEventListener("input", validateConfirm);
+confirm.addEventListener("input", validateConfirm);
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const ok1 = validateUsername();
-  const ok2 = validateEmail();
-  const ok3 = validatePassword();
-  const ok4 = validateConfirm();
+  const ok1 = validateUsername;
+  const ok2 = validateEmail;
+  const ok3 = validatePassword;
+  const ok4 = validateConfirm;
 
   if (ok1 && ok2 && ok3 && ok4) {
-    alert("Form submitted successfully!");
+    alert("Your registration has been completed successfully");
   }
 });
