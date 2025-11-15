@@ -180,10 +180,10 @@ confirm.addEventListener("input", validateConfirm);
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const ok1 = validateUsername;
-  const ok2 = validateEmail;
-  const ok3 = validatePassword;
-  const ok4 = validateConfirm;
+  const ok1 = validateUsername();
+  const ok2 = validateEmail();
+  const ok3 = validatePassword();
+  const ok4 = validateConfirm();
 
   if (ok1 && ok2 && ok3 && ok4) {
     alert("Your registration has been completed successfully");
