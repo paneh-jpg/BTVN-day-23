@@ -4,7 +4,7 @@ const form = document.querySelector("#form");
 const username = document.querySelector("#username");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
-const confirm = document.querySelector("#confirm");
+const confirmPassword = document.querySelector("#confirm");
 
 // Get icon & error elements
 const iconUsername = document.querySelector("#icon-username");
@@ -142,7 +142,7 @@ function validatePassword() {
     !/[a-z]/.test(value) ||
     !/[A-Z]/.test(value) ||
     !/[0-9]/.test(value) ||
-    !/[!@#$%^&*(),.?":{}|<>_\-\\\/\[\]=+]/.test(value)
+    !/[^A-Za-z0-9]/.test(value)
   ) {
     showError(
       password,
@@ -154,28 +154,42 @@ function validatePassword() {
   }
 
   showSuccess(password, iconPassword, errorPassword);
+  return true;
 }
 
 // Validate Confirm Password
 function validateConfirm() {
   if (!validatePassword()) {
-    showError(confirm, "Password is invalid", iconConfirm, errorConfirm);
+    showError(
+      confirmPassword,
+      "Password is invalid",
+      iconConfirm,
+      errorConfirm
+    );
     return false;
   }
 
-  if (confirm.value !== password.value || confirm.value === "") {
-    showError(confirm, "Password do not match", iconConfirm, errorConfirm);
+  if (
+    confirmPassword.value !== password.value ||
+    confirmPassword.value === ""
+  ) {
+    showError(
+      confirmPassword,
+      "Password do not match",
+      iconConfirm,
+      errorConfirm
+    );
     return false;
   }
 
-  showSuccess(confirm, iconConfirm, errorConfirm);
+  showSuccess(confirmPassword, iconConfirm, errorConfirm);
   return true;
 }
 
 username.addEventListener("input", validateUsername);
 email.addEventListener("input", validateEmail);
 password.addEventListener("input", validatePassword);
-confirm.addEventListener("input", validateConfirm);
+confirmPassword.addEventListener("input", validateConfirm);
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
