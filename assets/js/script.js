@@ -158,7 +158,7 @@ function validatePassword() {
 
 // Validate Confirm Password
 function validateConfirm() {
-  if (!validatePassword) {
+  if (!validatePassword()) {
     showError(confirm, "Password is invalid", iconConfirm, errorConfirm);
     return false;
   }
